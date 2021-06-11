@@ -1,27 +1,29 @@
-#!/bin/bash
+#!/bin/bash -x
 cash=100
-goal=0
+goal=200
 
-bets=0
-wins=0
+profit=0
+loss=0
 
-
-while [[ $cash -gt 0 && $goal -le 200 ]]
+while [ $cash -ne 0 ]
 do
-	bets=$((bets+1))
+	if [ $profit -eq $goal ]
+        then
+                break
+        fi
+
 	ran=$((RANDOM%2))
 
-	if [ $ran -eq 0 ]
+	if [ $ran -eq 1 ]
 	then
 		((cash++))
+		((profit++))
 	else
 		((cash--))
-	fi
-
-	if [ $cash -eq $goal ]
-	then
-		wins=$((wins+1))
+		((loss++))
 	fi
 done
-echo "Total bets is $bets"
-echo "Total wins is $wins"
+echo "Total bets is $loss"
+echo "Total wins is $profit"
+
+

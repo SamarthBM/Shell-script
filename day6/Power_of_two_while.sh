@@ -1,21 +1,24 @@
-#!/bin/bash
+#!/bin/bash -x
 read -p "Enter the value of n: " N
 echo $N
 
 power_of_two=1
-while [ $power_of_two -le 256 ]
-do
-for (( i=1; i<=N; i++ ))
-do
-        power_of_two=$((power_of_two*2))
+power_of_two1=1
 
-	if [ $power_of_two -gt 256 ]
+echo "Table of powers of 2 till $N are: "
+
+while [ $power_of_two1 -le $N ]
+do
+
+	if [ $power_of_two1 -le 8 ]
 	then
-		echo "END"
-	else
+		power_of_two=$((power_of_two*2))
 		echo $power_of_two
+		(( power_of_two1++ ))
+	else
+		echo "END"
+		break
 	fi
-done
 done
 
 
